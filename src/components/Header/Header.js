@@ -20,12 +20,30 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale">
+            <LinkContentInitial>Sale</LinkContentInitial>
+            <LinkContentReveal>Sale</LinkContentReveal>
+          </NavLink>
+          <NavLink href="/new">
+            <LinkContentInitial>New&nbsp;Releases</LinkContentInitial>
+            <LinkContentReveal>New&nbsp;Releases</LinkContentReveal>
+          </NavLink>
+          <NavLink href="/men">
+            <LinkContentInitial>Men</LinkContentInitial>
+            <LinkContentReveal>Men</LinkContentReveal>
+          </NavLink>
+          <NavLink href="/women">
+            <LinkContentInitial>Women</LinkContentInitial>
+            <LinkContentReveal>Women</LinkContentReveal>
+          </NavLink>
+          <NavLink href="/kids">
+            <LinkContentInitial>Kids</LinkContentInitial>
+            <LinkContentReveal>Kids</LinkContentReveal>
+          </NavLink>
+          <NavLink href="/collections">
+            <LinkContentInitial>Collections</LinkContentInitial>
+            <LinkContentReveal>Collections</LinkContentReveal>
+          </NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -123,6 +141,45 @@ const NavLink = styled.a`
 
   &:first-of-type {
     color: var(--color-secondary);
+  }
+
+  /* this component is the container for link reveal animation */
+  --reveal-animation-duration: 250ms;
+  position: relative;
+  overflow: hidden;
+`;
+
+const LinkContentInitial = styled.span`
+  display: block;
+
+  transform: translateY(0%);
+  will-change: transform;
+
+  ${NavLink}:hover &,
+  ${NavLink}:focus & {
+    transform: translateY(-100%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform var(--reveal-animation-duration);
+  }
+`;
+
+const LinkContentReveal = styled.span`
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: ${WEIGHTS.bold};
+
+  transform: translateY(100%);
+  will-change: transform;
+
+  ${NavLink}:hover &,
+  ${NavLink}:focus & {
+    transform: translateY(0%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform var(--reveal-animation-duration);
   }
 `;
 
