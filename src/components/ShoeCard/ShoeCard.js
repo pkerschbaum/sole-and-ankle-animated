@@ -88,8 +88,9 @@ const Image = styled.img`
 
   transition: transform 400ms;
   transform-origin: 50% 75%;
+  will-change: transform;
 
-  @media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     ${Link}:hover &,
     ${Link}:focus & {
       transform: scale(1.2);
