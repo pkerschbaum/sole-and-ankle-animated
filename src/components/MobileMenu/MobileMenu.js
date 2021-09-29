@@ -56,12 +56,12 @@ const FadeInOpacity = keyframes`
   }
 `;
 
-const SlideInFromRight = keyframes`
+const DoorShut = keyframes`
   from {
-    transform: translateX(var(--translate-x-to-start-from));
+    transform: rotateY(-180deg);
   }
   to {
-    transform: translateX(0%);
+    transform: rotateY(0deg);
   }
 `;
 
@@ -74,6 +74,7 @@ const Overlay = styled(DialogOverlay)`
   display: flex;
   justify-content: flex-end;
 
+  perspective: 800px;
   animation: ${FadeInBackdrop} 400ms forwards;
 `;
 
@@ -83,9 +84,9 @@ const SlideInContainer = styled(DialogContent)`
   height: 100%;
   padding: 24px 32px;
 
-  --translate-x-to-start-from: 100%;
   --slide-in-duration: 400ms;
-  animation: ${SlideInFromRight} var(--slide-in-duration) forwards;
+  transform-origin: 100% 50%;
+  animation: ${DoorShut} var(--slide-in-duration);
 `;
 
 const FadeInContainer = styled.div`
